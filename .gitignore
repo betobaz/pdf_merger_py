@@ -1,0 +1,11 @@
+.bash_history
+bin/
+build/
+db.sqlite3
+*.pdf
+include/
+lib/
+local/
+logs/
+*.pyc
+static/
