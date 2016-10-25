@@ -5,22 +5,30 @@ from rest_framework.parsers import FileUploadParser, MultiPartParser
 from PyPDF2 import PdfFileMerger, PdfFileReader
 from base64 import b64encode
 import os
+import logging
+logger = logging.getLogger(__name__)
 
 class PdfMergerView(APIView):
   parser_classes = (FileUploadParser,)
+
   def post(self, request, format=None):
-    merger = PdfFileMerger()
-    filedata = request.FILES.itervalues().next()
-    for file_upload in request.FILES:
-      pdfFileReader = PdfFileReader(request.FILES[file_upload])
-      merger.append(pdfFileReader)
-    filename = str(filedata.name)
-    merger.write(filename)
-    file_new = open(filename)
-    file_content = b64encode(file_new.read())
-    file_new.close()
-    os.remove(filename)
-    return Response({"file": file_content})
+    try:
+      merger = PdfFileMerger()
+      filedata = request.FILES.itervalues().next()
+      for file_upload in request.FILES:
+        pdfFileReader = PdfFileReader(request.FILES[file_upload])
+        merger.append(pdfFileReader)
+      filename = str(filedata.name)
+      merger.write(filename)
+      file_new = open(filename)
+      file_content = b64encode(file_new.read())
+      file_new.close()
+      #os.remove(filename)
+      #logger.debug("some message")
+      return Response({"file": file_content})
+    except:
+      print "Unexpected error:", sys.exc_info()[0]
+      return Response({"error": sys.exc_info()[0]})
 
 
     def handle_uploaded_file(f):
