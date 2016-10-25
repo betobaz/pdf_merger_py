@@ -6,12 +6,14 @@ from PyPDF2 import PdfFileMerger, PdfFileReader
 from base64 import b64encode
 import os
 import logging
-logger = logging.getLogger(__name__)
+#logger = logging.getLogger(__name__)
+logging.basicConfig(filename="sample.log", level=logging.INFO)
 
 class PdfMergerView(APIView):
   parser_classes = (FileUploadParser,)
 
   def post(self, request, format=None):
+    logging.debug("PdfFileMerger:starting")
     try:
       merger = PdfFileMerger()
       filedata = request.FILES.itervalues().next()
