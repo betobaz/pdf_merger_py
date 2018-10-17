@@ -85,4 +85,3 @@ USE_TZ = True
 
 STATIC_URL = '/pdf-merger/static/'
 STATIC_ROOT = "/var/www/merxbp/pdf_merger_py/static/"
-

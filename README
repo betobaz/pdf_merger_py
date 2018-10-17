@@ -1,0 +1,15 @@
+Virtual Env Wrapper
+
+```sh
+workon pdf_merger
+```
+
+Docker
+```
+docker-compose up
+```
+
+Supervisor
+```
+/etc/supervisor/conf.d/pdf_merger.conf
+```
