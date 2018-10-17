@@ -13,7 +13,6 @@ class PdfMergerView(APIView):
   parser_classes = (FileUploadParser,)
 
   def post(self, request, format=None):
-    #logging.info("PdfFileMerger:starting")
     try:
       merger = PdfFileMerger()
       filedata = request.FILES.itervalues().next()
@@ -27,11 +26,11 @@ class PdfMergerView(APIView):
       file_new.close()
       #os.remove(filename)
       #logger.debug("some message")
+      logging.info("finish")
       return Response({"file": file_content})
     except:
       logging.error("PdfFileMerger:error:{0}".format(sys.exc_info()[0]))
       return Response({"error": sys.exc_info()[0]})
-
 
     def handle_uploaded_file(f):
       with open('upload/name.txt', 'wb+') as destination:
