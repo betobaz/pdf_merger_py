@@ -11,7 +11,7 @@ import pprint
 class PdfMergerView(APIView):
   parser_classes = (FileUploadParser,)
   def post(self, request, format=None):
-    pprint.pprint(request.FILES)
+    # pprint.pprint(request.FILES)
     #newdoc = Document(docfile = request.FILES['file'])
     #newdoc.save()
     merger = PdfFileMerger()
@@ -28,7 +28,7 @@ class PdfMergerView(APIView):
 
     merger.write("document-output.pdf")
     return Response({
-      "data": request.DATA, 
+      "data": request.DATA,
       })
 
     def handle_uploaded_file(f):

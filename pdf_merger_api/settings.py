@@ -38,6 +38,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'rest_framework',
     'pdf_merger',
+    'qr_factory',
 )
 
 MIDDLEWARE_CLASSES = (
